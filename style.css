@@ -1,0 +1,221 @@
+/* early reset — looks like the first thing someone wrote */
+* {
+    box-sizing: border-box;
+}
+
+/* original layout, but spacing is inconsistent */
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: start center;
+    padding: 48px 16px; /* updated later, but left here */
+    background: #eef2f7;
+    color: #172033;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* someone added this later after realizing buttons looked weird */
+button,
+input {
+    font: inherit;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+}
+
+/* added during a bug fix sprint */
+button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* container — looks like it was refactored once */
+.app {
+    width: min(100%, 560px);
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #d8dee8;
+    border-radius: 8px;
+    box-shadow: 0 16px 40px rgba(23, 32, 51, 0.12);
+}
+
+/* header spacing — untouched since day one */
+.app-header {
+    margin-bottom: 22px;
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #526070;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* form — someone added gap later */
+.task-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+/* input — looks like it got a polish pass */
+#taskInput {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid #c8d1df;
+    border-radius: 6px;
+    outline: none;
+}
+
+/* focus state added after user feedback */
+#taskInput:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+}
+
+/* button — slightly inconsistent spacing */
+#addBtn {
+    padding: 0 18px;
+    background: #2563eb;
+    color: #ffffff;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+/* toolbar + summary — grouped later */
+.toolbar,
+.summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.toolbar {
+    margin-bottom: 14px;
+}
+
+/* filters — untouched */
+.filters {
+    display: flex;
+    gap: 6px;
+}
+
+/* button styles — someone consolidated these */
+.filter-btn,
+.clear-btn,
+.summary button,
+.delete-btn {
+    min-height: 34px;
+    padding: 0 10px;
+    border-radius: 6px;
+    background: #e8edf5;
+    color: #263244;
+}
+
+/* active state — added later */
+.filter-btn.active {
+    background: #172033;
+    color: #ffffff;
+}
+
+/* list — unchanged */
+.task-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    min-height: 52px;
+}
+
+/* task item — grid added after flexbox failed */
+.task-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #edf1f6;
+}
+
+/* checkbox — someone standardized sizes */
+.task-item input {
+    width: 18px;
+    height: 18px;
+}
+
+/* text — cursor added later */
+.task-text {
+    line-height: 1.4;
+    cursor: pointer;
+    overflow-wrap: anywhere;
+}
+
+/* completed state — classic */
+.task-item.completed .task-text {
+    color: #7b8796;
+    text-decoration: line-through;
+}
+
+/* delete button — someone made it angry */
+.delete-btn {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* empty message — looks like a late addition */
+.empty-message {
+    margin: 16px 0;
+    padding: 18px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px dashed #c8d1df;
+    color: #526070;
+}
+
+.empty-message[hidden] {
+    display: none;
+}
+
+/* summary — small polish */
+.summary {
+    margin-top: 16px;
+    font-size: 0.95rem;
+    color: #526070;
+}
+
+/* mobile — clearly added after launch */
+@media (max-width: 520px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .app {
+        padding: 20px;
+    }
+
+    .task-form,
+    .toolbar,
+    .summary {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #addBtn {
+        min-height: 44px;
+    }
+
+    .filters {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
